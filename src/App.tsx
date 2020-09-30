@@ -1,8 +1,17 @@
 import React, { FC } from 'react';
-import { Button } from 'antd';
+
+// 引入路由
+import routes from './router/index'
+
+console.log(JSON.stringify(routes))
+
 
 const App: FC = () => {
-  return <Button type="primary">我是一个按钮</Button>;
+  return (
+    <div>
+      { routes}
+    </div>
+  )
 };
 
 export default App;
