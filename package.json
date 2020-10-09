@@ -2,6 +2,21 @@
   "name": "react-ts-antd-template",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{css,scss,less,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "antd": "^4.6.3",
     "cra-template-typescript": "1.0.3",
