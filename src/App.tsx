@@ -1,17 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
 // 引入路由
 import routes from './router/index'
 
-console.log(JSON.stringify(routes))
+// console.log(JSON.stringify(routes))
 
 
 const App: FC = () => {
+  const title = 'hello'
   return (
-    <div>
-      { routes}
+    <div title={ title }>
+      {routes }
     </div>
   )
-};
+}
 
-export default App;
+export default App

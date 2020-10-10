@@ -1,5 +1,5 @@
-import React from 'react';
-import Loadable from 'react-loadable';
+import React from 'react'
+import Loadable from 'react-loadable'
 import Root from '../loyout'
 
 import Login from '../pages/login'

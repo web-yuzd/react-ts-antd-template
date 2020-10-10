@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
     node: true,
   },
   extends: [
@@ -23,10 +23,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
+  plugins: ['react', '@typescript-eslint'],
   settings: {
     'import/resolver': {
       node: {
@@ -39,8 +36,21 @@ module.exports = {
     },
   },
   rules: {
-    'import/extensions': [ERROR,'ignorePackages', {ts: 'never',tsx: 'never',json: 'never',js: 'never'}],
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/no-extra-semi': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      { ts: 'never', tsx: 'never', json: 'never', js: 'never' },
+    ],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    // 'array-bracket-spacing': ['error', 'always'],
+    'object-curly-spacing': ['error', 'always'],
+    'react/jsx-curly-spacing': ['error', 'always'],
   },
-};
+}
