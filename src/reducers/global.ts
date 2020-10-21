@@ -5,6 +5,8 @@ const globalState: GlobalState = {
   locale: (localStorage.getItem('lang') || 'en_US') as any,
 }
 
+export type globalState = typeof globalState
+
 // eslint-disable-next-line import/prefer-default-export
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {
   switch (actions.type) {

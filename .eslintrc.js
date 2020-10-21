@@ -52,5 +52,8 @@ module.exports = {
     // 'array-bracket-spacing': ['error', 'always'],
     'object-curly-spacing': ['error', 'always'],
     'react/jsx-curly-spacing': ['error', 'always'],
+    'func-names': ['error', 'never'],
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
   },
 }

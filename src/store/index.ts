@@ -10,6 +10,9 @@ const rootReducers = combineReducers({
   globalReducer,
 })
 
-const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+export type AppState = ReturnType<typeof rootReducers>
 
-export default store
+export default function cofigureStore() {
+  const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+  return store
+}

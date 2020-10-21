@@ -5,7 +5,6 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosPromise,
   Method,
 } from 'axios'
 
@@ -40,7 +39,7 @@ Service.interceptors.response.use(
 
 interface ResponseData {
   code: number
-  data: Record<string, unknown>
+  data: Record<string, unknown> | string | unknown[]
   msg: string
 }
 
@@ -49,7 +48,7 @@ const Http = function (config: AxiosRequestConfig, silent = false) {
     .then((response) => {
       return response.data
     })
-    .then((o) => {
+    .then((o: ResponseData) => {
       // o.code = parseInt(o.code, 10)
       // o.data = o.data || ''
       if (o.code !== 0) {
@@ -65,9 +64,9 @@ const Http = function (config: AxiosRequestConfig, silent = false) {
 
 Http.get = function (
   url: string,
-  params: Record<string, unknown> = {},
+  params: any,
   silent = false,
-): AxiosPromise {
+) {
   const cfg = { url, method: 'get' as Method, params }
   return Http(cfg, silent)
 }
@@ -76,7 +75,7 @@ Http.post = function (
   url: string,
   data: Record<string, unknown> = {},
   silent = false,
-): AxiosPromise {
+) {
   const cfg = { url, method: 'post' as Method, data }
   return Http(cfg, silent)
 }

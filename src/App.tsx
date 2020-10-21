@@ -7,11 +7,10 @@ import routes from './router/index'
 
 
 const App: FC = () => {
-  const title = 'hello'
   return (
-    <div title={ title }>
-      {routes }
-    </div>
+    <>
+      { routes }
+    </>
   )
 }
 
