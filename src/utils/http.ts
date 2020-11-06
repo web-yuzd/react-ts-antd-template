@@ -1,12 +1,7 @@
 /**
  * axios请求封装
  */
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method,
-} from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 
 const baseURL = '/'
 const Service: AxiosInstance = axios.create({
@@ -62,20 +57,12 @@ const Http = function (config: AxiosRequestConfig, silent = false) {
     })
 }
 
-Http.get = function (
-  url: string,
-  params: any,
-  silent = false,
-) {
+Http.get = function (url: string, params: any, silent = false) {
   const cfg = { url, method: 'get' as Method, params }
   return Http(cfg, silent)
 }
 
-Http.post = function (
-  url: string,
-  data: Record<string, unknown> = {},
-  silent = false,
-) {
+Http.post = function (url: string, data: Record<string, unknown> = {}, silent = false) {
   const cfg = { url, method: 'post' as Method, data }
   return Http(cfg, silent)
 }

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 // import { Link } from 'react-router-dom'
-import { renderRoutes, RouteConfigComponentProps, RouteConfig } from 'react-router-config'
+import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import './index.less'
 import { Layout } from 'antd'
 import {
@@ -12,10 +12,10 @@ import Sidebar from './sidebar'
 
 const { Header, Sider, Content } = Layout
 
-const Root: FC<RouteConfigComponentProps> = (props: RouteConfig) => {
+const Root: FC<RouteConfigComponentProps> = (props) => {
   console.log(props)
 
-  const { route } = props
+  const { route, history, location } = props
   const [collapsed, setCollapsed] = useState(false)
 
   const toggle = () => {
@@ -38,7 +38,11 @@ const Root: FC<RouteConfigComponentProps> = (props: RouteConfig) => {
             </Menu.Item>
         </Menu>
       </Sider> */}
-      <Sidebar collapsed={ collapsed } />
+      <Sidebar
+        collapsed={ collapsed }
+        history={ history }
+        location={ location }
+      />
       <Layout className="site-layout">
         <Header className="site-layout-background" style={ { padding: 0 } }>
           { React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {

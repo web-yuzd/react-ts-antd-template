@@ -28,6 +28,15 @@ export default [
           }
         })
       },
+      {
+        path: '/users',
+        component: Loadable({
+          loader: () => import('../pages/users'),
+          loading() {
+            return <div>loading...</div>
+          }
+        })
+      },
     ]
   }
 ]

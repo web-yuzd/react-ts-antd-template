@@ -19,7 +19,43 @@
     margin: 16px;
   }
 
+  .sider-logo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    line-height: 64px;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      display: inline-block;
+      height: 32px;
+      vertical-align: middle;
+    }
+    span {
+      display: inline-block;
+      height: 32px;
+      margin: 0 0 0 12px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+      vertical-align: middle;
+    }
+  }
+
   .site-layout .site-layout-background {
     background: #fff;
+  }
+
+  &-header {
+    &-background {
+      padding: 0;
+      height: 48px;
+      line-height: 48px;
+      background: #fff;
+    }
   }
 }
