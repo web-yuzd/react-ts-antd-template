@@ -10,11 +10,9 @@ import {
 
 import Sidebar from './sidebar'
 
-const { Header, Sider, Content } = Layout
+const { Header, Content } = Layout
 
 const Root: FC<RouteConfigComponentProps> = (props) => {
-  console.log(props)
-
   const { route, history, location } = props
   const [collapsed, setCollapsed] = useState(false)
 
@@ -24,20 +22,6 @@ const Root: FC<RouteConfigComponentProps> = (props) => {
 
   return (
     <Layout className="layout">
-      {/* <Sider trigger={ null } collapsible collapsed={ collapsed }>
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={ ['1'] }>
-          <Menu.Item key="1" icon={ <UserOutlined /> }>
-            nav 1
-            </Menu.Item>
-          <Menu.Item key="2" icon={ <VideoCameraOutlined /> }>
-            nav 2
-            </Menu.Item>
-          <Menu.Item key="3" icon={ <UploadOutlined /> }>
-            nav 3
-            </Menu.Item>
-        </Menu>
-      </Sider> */}
       <Sidebar
         collapsed={ collapsed }
         history={ history }
@@ -59,7 +43,7 @@ const Root: FC<RouteConfigComponentProps> = (props) => {
           } }
         >
           {
-            route && route.routes && renderRoutes(route.routes)
+            route?.routes && renderRoutes(route.routes)
           }
         </Content>
       </Layout>

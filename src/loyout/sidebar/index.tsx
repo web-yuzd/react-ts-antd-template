@@ -20,7 +20,6 @@ interface IProps extends IRouteConfig {
   collapsed: boolean
 }
 const Siderbar: FC<IProps> = (props) => {
-  console.log(props)
 
   const [keys, setKeys] = useState({
     currentSideMenu: '',

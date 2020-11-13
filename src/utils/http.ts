@@ -1,7 +1,8 @@
 /**
  * axios请求封装
  */
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, Method } from 'axios'
+import { message } from 'antd'
 
 const baseURL = '/'
 const Service: AxiosInstance = axios.create({
@@ -16,7 +17,7 @@ Service.interceptors.request.use(
     // config.headers['Authorization'] = ''
     return config
   },
-  (error: Error) => {
+  (error: AxiosError) => {
     // console.log(error)
     return Promise.reject(error)
   },
@@ -26,34 +27,38 @@ Service.interceptors.response.use(
   (response: AxiosResponse) => {
     return response.data
   },
-  (error: Error) => {
+  (error: AxiosError) => {
     // console.log(error)
     return Promise.reject(error)
   },
 )
 
-interface ResponseData {
+interface ResponseData<T> {
   code: number
-  data: Record<string, unknown> | string | unknown[]
+  data: T
   msg: string
 }
 
-const Http = function (config: AxiosRequestConfig, silent = false) {
+const Http = function (config: AxiosRequestConfig, silent = false): Promise<any> {
   return Service(config)
     .then((response) => {
       return response.data
     })
-    .then((o: ResponseData) => {
-      // o.code = parseInt(o.code, 10)
-      // o.data = o.data || ''
+    .then((o: ResponseData<any>) => {
       if (o.code !== 0) {
         // 页面错误提示
         if (!silent) {
           console.log(`[${o.code}] ${o.msg}`)
+          message.error(`[${o.code}] ${o.msg}`)
         }
       }
 
-      return o
+      // return o
+      Promise.resolve(o)
+    })
+    .catch((error) => {
+      // console.log(error)
+      Promise.reject(error)
     })
 }
 
