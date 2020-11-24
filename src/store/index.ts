@@ -12,7 +12,7 @@ const rootReducers = combineReducers({
 
 export type AppState = ReturnType<typeof rootReducers>
 
-export default function cofigureStore() {
+export default function configureStore() {
   const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunkMiddleware)))
   return store
 }

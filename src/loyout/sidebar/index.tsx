@@ -3,14 +3,11 @@ import { Link } from 'react-router-dom'
 import { RouteConfigComponentProps } from 'react-router-config'
 
 import { Layout, Menu } from 'antd'
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons'
 import logo from '../../assets/logo.svg'
+import { asyncRoutes } from '../../router/config'
 
 const { Sider } = Layout
+const { Item, SubMenu } = Menu
 
 interface IRouteConfig {
   history: RouteConfigComponentProps['history'],
@@ -19,6 +16,19 @@ interface IRouteConfig {
 interface IProps extends IRouteConfig {
   collapsed: boolean
 }
+
+interface IMenuItem {
+  path: string;
+  name: string;
+  icon: React.ReactNode
+}
+interface ISiderbarItem {
+  path: string;
+  name: string;
+  icon: React.ReactNode;
+  routes?: IMenuItem[]
+}
+
 const Siderbar: FC<IProps> = (props) => {
 
   const [keys, setKeys] = useState({
@@ -53,15 +63,40 @@ const Siderbar: FC<IProps> = (props) => {
         defaultSelectedKeys={ ['1'] }
         onClick={ handleMenuItemClick }
       >
-        <Menu.Item key="1" icon={ <UserOutlined /> }>
-          nav 1
-        </Menu.Item>
-        <Menu.Item key="/login" icon={ <VideoCameraOutlined /> }>
-          nav 2
-        </Menu.Item>
-        <Menu.Item key="/dashboard" icon={ <UploadOutlined /> }>
-          nav 3
-        </Menu.Item>
+        {
+          asyncRoutes.map((menu: ISiderbarItem) => {
+            if (menu.routes) {
+              return (
+                <SubMenu
+                  key={ menu.path }
+                  title={ menu.name }
+                  icon={ menu.icon }
+                >
+                  {
+                    menu.routes.map((menuItem: IMenuItem) => {
+                      return (
+                        <Item
+                          key={ menuItem.path }
+                          icon={ menuItem.icon }
+                        >
+                          { menuItem.name }
+                        </Item>
+                      )
+                    })
+                  }
+                </SubMenu>
+              )
+            }
+            return (
+              <Item
+                key={ menu.path }
+                icon={ menu.icon }
+              >
+                { menu.name }
+              </Item>
+            )
+          })
+        }
       </Menu>
     </Sider>
   )
